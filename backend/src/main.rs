@@ -11,7 +11,6 @@ use std::env;
 use std::fs;
 use std::path::Path;
 use std::thread::available_parallelism;
-use tokio::sync::Mutex;
 use tokio_util::task::LocalPoolHandle;
 use tower_http::compression::CompressionLayer;
 use tower_http::cors::CorsLayer;

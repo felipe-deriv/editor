@@ -5,10 +5,10 @@ watch:
 	RULES_DIR=./rules RUSTFLAGS=-Awarnings cargo watch -c -w backend/src -x run
 
 build:
-	docker build .
+	docker build -t business_rules/editor:latest .
 
 run:
-	docker run -p 3000:3000 gorules/editor
+	docker run --rm -p 3000:3000 -v ./rules:/app/rules --init business_rules/editor:latest
 
 dev:
 	npm i pnpm -g

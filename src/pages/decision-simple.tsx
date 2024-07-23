@@ -193,15 +193,18 @@ export const DecisionSimplePage: React.FC = () => {
   };
 
   const saveFile = async (_: any, fname?: string) => {
-    if (fname) {
+    let f: string;
+
+    if (typeof fname !== 'undefined') {
       setFileName(fname);
+      f = fname;
     } else {
-      fname = fileName;
+      f = fileName;
     }
 
-    if (fname) {
+    if (f) {
       const saveTemplate = async () => {
-        const url = `/api/save/${fname}`; // Adjust the API endpoint if necessary
+        const url = `/api/save/${f}`; // Adjust the API endpoint if necessary
       
         try {
           const response = await fetch(url, {
@@ -213,12 +216,12 @@ export const DecisionSimplePage: React.FC = () => {
           });
         
           if (!response.ok) {
-            message.error(`Cannot save file ${fname}: ${response.statusText}`);
+            message.error(`Cannot save file ${f}: ${response.statusText}`);
             return
           }
 
-          message.success(`File saved: ${fname}`);
-          decisionTemplates[fname] = graph;
+          message.success(`File saved: ${f}`);
+          decisionTemplates[f] = graph;
           setDecisionTemplates(decisionTemplates);
           setUnsaved(false);
         } catch (err) {

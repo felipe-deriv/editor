@@ -2,37 +2,41 @@
 
 URL: https://editor.gorules.io
 
-## Running via Docker
+## Production
 
-Running locally:
+*Takes a lot of time to build, definitely not suitable for development!*
+
+Build the image:
 ```bash
-docker run -p 3000:3000 --platform=linux/amd64 gorules/editor
+make build
 ```
 
-Repository:
-https://hub.docker.com/r/gorules/editor
+Run the image and listen in port 3000:
+```bash
+make run
+```
+Open the frontend [here](http://localhost:3000/)
 
-## Quickstart
+**Note:** delete browser cache if you don't see changes.
 
-Run rust backend:
+## Dev
+
+*Takes a lot of the time the first time*
+
+Rust backend, need to install rust **nightly**. Install `rustup` and then `rustup override set nightly`.
 ```bash
 make watch
 ```
 
-Run frontend:
+Frontend: [link](https://localhost:5173/)
 ```bash
-npm i pnpm -g
-pnpm i
-pnpm dev
+make dev
 ```
 
+*Both the backend and frontend have watchers, development is super enjoyable!*
 
-### Local HTTPS
+## Missing deps?
 
-To create a local HTTPS certificate:
 ```bash
-brew install mkcert
-
-mkcert --install
-cd cert && mkcert localhost
+make deps
 ```
